@@ -1,0 +1,49 @@
+<div>
+    <p class="topNav">
+        To Do List
+    </p>
+
+    <div class="secondDiv">
+        <div style="    display: flex;">
+            <input type="text" style="     border-radius: 7px 0px 0px 10px;   height: 2rem;
+            width: 35rem;" value={{todo}} (input)="handleInputChange($event)" />
+            <button class="btn" (click)="addToDo()">Add</button>
+        </div>
+        <div style="color: rgb(0, 0, 0);width: 100%;margin-top: 4rem;">
+
+            <table style="width: 100%;">
+
+                <tr style="font-size: 2rem">
+                    <th style="    color: cyan;">S.No</th>
+                    <th style="    color: cyan;">Task</th>
+                    <th style="    color: cyan;">Status</th>
+                    <th style="color:cyan; font-size: 1rem;">Tap to mark done</th>
+                    <th style="color:cyan; font-size: 1rem;">Want to delete ?</th>
+                </tr>
+                <tr class="dataCss" *ngFor="let item of todoArr;let index=index">
+                    <td class="mappedData">{{index+1}}</td>
+                    <td class="mappedData">{{item.do}}</td>
+                    <td class="mappedData" (click)="handleEdit(index,item.isDone)">{{!item.isDone?"ToDo &#9998;":"Done"}}</td>
+
+                    <td class="mappedData" (click)="handleMarkDone(index)" [ngStyle]="!item.isDone?{}:{'color':'green','font-size':'2.5rem'}">
+                        <p *ngIf="!item.isDone;else elseBlock">&#10060;</p>
+                        <ng-template #elseBlock>
+                            &#10004;
+                        </ng-template>
+                        <!-- {{item.isDone? &#10004; :&#10060;}} -->
+                    </td>
+<td class="mappedData" (click)="handleDelete(index)"> &#9003;</td>
+
+
+
+                </tr>
+
+            </table>
+
+
+        </div>
+
+        <!-- <app-body style="width: 90%;" [todoList]="todoArr" [todo]="todo" [toEditIndex]="toEditIndex"></app-body> -->
+    </div>
+
+</div>
